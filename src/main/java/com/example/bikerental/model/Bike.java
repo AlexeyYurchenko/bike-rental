@@ -24,4 +24,5 @@ public class Bike {
 
     @Min(value = 2010, message = "Год должен быть больше, чем 2010")
     private int year;
+
 }
