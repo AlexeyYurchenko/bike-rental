@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update bike</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/bikes/{id}(id=${bike.getId()})}" th:object="${bike}">
+    <label for="nameBike">Введите название велосипеда: </label>
+    <input type="text" th:field="*{nameBike}" id="nameBike"/>
+    <div style="color:red" th:if="${#fields.hasErrors('nameBike')}" th:errors="*{nameBike}">nameBike Error</div>
+    <br/>
+    <label for="manufacturer">Введите производителя: </label>
+    <input type="text" th:field="*{manufacturer}" id="manufacturer"/>
+    <div style="color:red" th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">manufacturer Error</div>
+    <br/>
+    <label for="year">Введите год: </label>
+    <input type="text" th:field="*{year}" id="year"/>
+    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error</div>
+    <br/>
+    <input type="submit" value="Редактировать!"/>
+</form>
+
+</body>
+</html>
