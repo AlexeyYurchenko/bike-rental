@@ -31,7 +31,7 @@ public class BikesController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model, @ModelAttribute("person") Person person) {
+    public String show(@PathVariable("id") Long id, Model model, @ModelAttribute("person") Person person) {
         model.addAttribute("bike", bikeRepository.show(id));
 
         Optional<Person> bikeOwner = bikeRepository.getBikeOwner(id);
@@ -60,14 +60,14 @@ public class BikesController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String edit(Model model, @PathVariable("id") Long id) {
         model.addAttribute("bike", bikeRepository.show(id));
         return "bikes/edit";
     }
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("bike") @Valid Bike bike, BindingResult bindingResult,
-                         @PathVariable("id") int id) {
+                         @PathVariable("id") Long id) {
         if (bindingResult.hasErrors())
             return "bikes/edit";
 
@@ -76,19 +76,19 @@ public class BikesController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String delete(@PathVariable("id") Long id) {
         bikeRepository.delete(id);
         return "redirect:/bikes";
     }
 
     @PatchMapping("/{id}/release")
-    public String release(@PathVariable("id") int id) {
+    public String release(@PathVariable("id") Long id) {
         bikeRepository.release(id);
         return "redirect:/bikes/" + id;
     }
 
     @PatchMapping("/{id}/assign")
-    public String assign(@PathVariable("id") int id, @ModelAttribute("person") Person selectedPerson) {
+    public String assign(@PathVariable("id") Long id, @ModelAttribute("person") Person selectedPerson) {
         bikeRepository.assign(id, selectedPerson);
         return "redirect:/bikes/" + id;
     }

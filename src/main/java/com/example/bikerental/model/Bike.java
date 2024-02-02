@@ -7,12 +7,14 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldNameConstants;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldNameConstants
 public class Bike {
-    private int id;
+    private Long id;
 
     @NotEmpty(message = "Название велосипеда не должно быть пустым")
     @Size(min = 2, max = 100, message = "Название велосипеда должно быть от 2 до 100 символов длиной")
